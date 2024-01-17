@@ -131,8 +131,13 @@ const renderNode = (node, index) => {
     case "li":
       return (
         <li key={index}>
-          <Paragraph title={node.title} children={node.children} />
+          {node.children &&
+            node.children.map((child, i) => renderNode(child, i))}
         </li>
+      );
+    case "lic":
+      return (
+        <Paragraph key={index} title={node.title} children={node.children} />
       );
 
     default:
